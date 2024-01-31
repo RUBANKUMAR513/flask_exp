@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect
+from flask import Flask,render_template,redirect,request
 import datetime
 app = Flask(__name__)
 
@@ -45,7 +45,16 @@ def dashboard():
     name="Ruban"
     notification=5
     mail=8
+
+@app.route("/inputpage")
+def inputpage():
+    return render_template("inputpage.html")
     
-    return render_template("dashboard.html",name_temp=name,notification_temp=notification,mail_temp=mail)
+    
+@app.route("/statuspage",methods=["GET"])
+def statuspage():
+    status=request.args.get("textinput")
+    return render_template("statuspage.html",status=status)
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
