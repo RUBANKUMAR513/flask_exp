@@ -51,9 +51,9 @@ def inputpage():
     return render_template("inputpage.html")
     
     
-@app.route("/statuspage",methods=["GET"])
+@app.route("/statuspage",methods=["post"])
 def statuspage():
-    status=request.args.get("textinput")
+    status=request.form.get("textinput")
     return render_template("statuspage.html",status=status)
     
 if __name__ == "__main__":
